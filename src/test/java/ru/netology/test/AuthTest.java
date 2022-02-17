@@ -5,8 +5,10 @@ import io.restassured.filter.log.LogDetail;
 import io.restassured.http.ContentType;
 import io.restassured.specification.RequestSpecification;
 import org.junit.jupiter.api.BeforeAll;
+import org.junit.jupiter.api.Test;
 import ru.netology.data.RegistrationDto;
 
+import static com.codeborne.selenide.Selenide.$;
 import static io.restassured.RestAssured.given;
 
 public class AuthTest {
@@ -30,4 +32,11 @@ public class AuthTest {
                 .statusCode(200); // код 200 OK
     }
 
+
+    @Test
+    public void shouldLogin(){
+       $("[data-test-id='login'] input").setValue("vasya");
+       $("[data-test-id='password'] input").setValue("password");
+       $("[data-test-id='action-login']").click();
+    }
 }
