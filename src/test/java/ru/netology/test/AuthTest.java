@@ -14,13 +14,6 @@ import static com.codeborne.selenide.Selenide.open;
 
 
 public class AuthTest {
-    private static DataGenerator.RegistrationDto user;
-
-//    @BeforeAll
-//    static void setUpAll() {
-//        DataGenerator.RegistrationDto user = DataGenerator.getRegistrationDto("vasya", "password", "active");
-//        DataGenerator.sendRequest(user);
-//    }
 
     @BeforeEach
     void setup() {
@@ -56,9 +49,7 @@ public class AuthTest {
         $("[data-test-id='login'] input").setValue(user.getLogin());
         $("[data-test-id='password'] input").setValue(user.getPassword());
         $("[data-test-id='action-login']").click();
-//        $("[data-test-id='error-notification']").shouldHave(Condition.text("Ошибка! Неверно указан логин или пароль"));
-        boolean actual = $(withText("Личный кабинет")).exists();
-        assertTrue(actual);
+        $("[data-test-id='error-notification']").shouldHave(Condition.text("Ошибка! Неверно указан логин или пароль"));
     }
 
     @Test
